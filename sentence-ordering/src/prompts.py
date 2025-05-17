@@ -28,9 +28,10 @@ True :
   {inputs}
   <|im_end|>
 ''',
+
 False : 
 '''
-  <|im_start>tool_list
+  <|im_start|>tool_list
   <|im_end|>
   <|im_start|>system
   당신은 지금부터 문장 분석 전문가 입니다.
