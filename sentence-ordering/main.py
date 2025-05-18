@@ -21,7 +21,6 @@ tokenizer  = AutoTokenizer.from_pretrained(
 
 tokenizer.padding_size = 'right'
 tokenizer.pad_token    = tokenizer.eos_token
-model.tokenizer        = tokenizer
 
 def train(**kwargs):
 
@@ -30,9 +29,10 @@ def train(**kwargs):
                         **kwargs
                     )
     
-    print(f'sample data : {train_dataset["train"].data[0][0].as_py()}')
+    print(f'sample prompt : {train_dataset["train"].data[0][0].as_py()}')
+    print(f'sample target : {train_dataset["train"].data[1][0].as_py()}')
 
-    trainer = prepare_trainer(model, train_dataset)
+    trainer = prepare_trainer(model, train_dataset, tokenizer)
     trainer.train()
 
     trainer.save_model('output/adapter')

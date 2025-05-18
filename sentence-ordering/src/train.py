@@ -63,7 +63,8 @@ def prepare_config(
 
 def prepare_trainer(
                   model    : "AutoModelForCausalLM", 
-                  dataset  : 'datasets.Dataset'
+                  dataset  : 'datasets.Dataset',
+                  tokenizer: "AutoTokenizer"
                 ):
 
   model.gradient_checkpointing_enable()
@@ -78,6 +79,7 @@ def prepare_trainer(
 
   trainer = SFTTrainer(
       model              = model, 
+      processing_class   = tokenizer,
       train_dataset      = dataset['train'],
       eval_dataset       = dataset['test'],
       args               = train_config,
