@@ -16,8 +16,7 @@ def prepare_prompt(
   inputs  = [row[f'sentence_{idx}'] for idx in range(4)]
 
   if phase_type == 'train':
-    targets = [[row[f'answer_{idx}'], input_] \
-                for idx, input_ in enumerate(inputs)]
+    targets = [f'answer_{idx}' for idx in range(4)]
 
   else: targets = '' 
 
